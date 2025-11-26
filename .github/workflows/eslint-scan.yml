@@ -23,7 +23,7 @@ jobs:
 
       - name: Run ESLint security scan
         run: |
-          npx eslint . --ext .js -f json -o eslint-report.json || true
+          npx eslint . -f json -o eslint-report.json || true
 
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
