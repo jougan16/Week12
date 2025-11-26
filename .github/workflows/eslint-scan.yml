@@ -23,7 +23,15 @@ jobs:
 
       - name: Run ESLint security scan
         run: |
-          npx eslint . -f json -o eslint-report.json || true
+          npx eslint . --ext .js --ext .ts -f json -o eslint-report.json || true
+
+      - name: Check report exists
+        run: |
+          if [ ! -f eslint-report.json ]; then
+            echo "No ESLint report generated"
+            ls -R .
+            exit 0
+          fi
 
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
